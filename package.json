@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/VVoruganti/smartevac/issues"
   },
-  "homepage": "https://github.com/VVoruganti/smartevac#readme"
+  "homepage": "https://github.com/VVoruganti/smartevac#readme",
+  "dependencies": {
+    "node-dijkstra": "^2.5.0"
+  }
 }
