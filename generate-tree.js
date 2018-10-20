@@ -50,7 +50,7 @@ function updateDanger(dangerNodes, tree, map) {
         for (var node in tree) {
             if (node == dangerNodes[i]) {
                 tree[node]["danger"] = true;
-t            }
+            }
         }
         for (var node in map) {
             if (distance(map[node].x, map[dangerNodes[i]].x, map[node].y, map[dangerNodes[i]].y) < 60) {
