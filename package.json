@@ -1,0 +1,19 @@
+{
+  "name": "smartevac",
+  "version": "1.0.0",
+  "description": "Smart Evacuation Tool",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VVoruganti/smartevac.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VVoruganti/smartevac/issues"
+  },
+  "homepage": "https://github.com/VVoruganti/smartevac#readme"
+}
