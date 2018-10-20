@@ -1,8 +1,13 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-Two = require('two.js');
-graph = require('node-dijkstra');
 
-},{"node-dijkstra":2,"two.js":7}],2:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
+var Two = require('two.js');
+
+var graph = require('node-dijkstra');
+
+var fs = require('fs');
+
+},{"fs":1,"node-dijkstra":3,"two.js":8}],3:[function(require,module,exports){
 const Queue = require('./PriorityQueue');
 
 const removeDeepFromMap = require('./removeDeepFromMap');
@@ -300,7 +305,7 @@ class Graph {
 
 module.exports = Graph;
 
-},{"./PriorityQueue":3,"./removeDeepFromMap":4,"./toDeepMap":5,"./validateDeep":6}],3:[function(require,module,exports){
+},{"./PriorityQueue":4,"./removeDeepFromMap":5,"./toDeepMap":6,"./validateDeep":7}],4:[function(require,module,exports){
 /**
  * This very basic implementation of a priority queue is used to select the
  * next node of the graph to walk to.
@@ -417,7 +422,7 @@ class PriorityQueue {
 
 module.exports = PriorityQueue;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /**
  * Removes a key and all of its references from a map.
  * This function has no side-effects as it returns
@@ -443,7 +448,7 @@ function removeDeepFromMap(map, key) {
 
 module.exports = removeDeepFromMap;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
  * Validates a cost for a node
  *
@@ -489,7 +494,7 @@ function toDeepMap(source) {
 
 module.exports = toDeepMap;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /**
  * Validate a map to ensure all it's values are either a number or a map
  *
@@ -514,7 +519,7 @@ function validateDeep(map) {
 
 module.exports = validateDeep;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 /**
  * two.js
@@ -10762,4 +10767,4 @@ this.Two = (function(previousTwo) {
 })((typeof global !== 'undefined' ? global : this).Two);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[1]);
+},{}]},{},[2]);

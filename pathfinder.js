@@ -1,1 +1,0 @@
-/*The purpose of this javascript file is to be use to find the most ideal path for a student to take to exit the building safely. It will take into account the areas of danger and generate the fastest path using Djikstra's algorithm.*\

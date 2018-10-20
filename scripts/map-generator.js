@@ -1,10 +1,13 @@
 /*The purpose of this javascript file is to create an environment that administrators can use to generate a map for their specific building */
-//var Two = require('two.js')
-
 var mousePos;
 var two;
+
+function updateJSON() {
+
+}
+
 function addNode(mouse) {
-    two.makeCircle(mouse.x,mouse.y,20);
+    two.makeCircle(mouse.x,mouse.y,10);
     two.update();
 }
 
