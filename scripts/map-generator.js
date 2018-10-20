@@ -1,28 +1,54 @@
 /*The purpose of this javascript file is to create an environment that administrators can use to generate a map for their specific building */
-var mousePos;
-var two;
-var styles;
-var counter = 0;
-var mapArray = [] 
+let mousePos;
+let two;
+let styles;
+let counter = 0;
+let mapArray = [] 
+let JSONObject = [];
 
-
-function updateJSON() {
-
+function updateJSON(...args) {
+    if(args[0] == true) {
+        let node = args[1];
+        let xval = args[2];
+        let yval = args[3];
+        JSONObject[node] = {
+            x:xval,
+            y:yval,
+            connections:[]
+        }
+    }
+    else if(args[0] == false) {
+        JSONObject[args[1][0]]["connections"].push(args[1][1]);
+        JSONObject[args[1][1]]["connections"].push(args[1][0]);
+    }
 }
 
 function addNode(mouse) {
     mapArray.push(two.makeCircle(mouse.x,mouse.y,10));
     two.makeText(String(counter),mouse.x,mouse.y,styles);
     two.update();
+    updateJSON(true,counter,mouse.x,mouse.y);
     counter++;
 }
 
-function addLine() {
+function addLine(str) {
+    var lineArray = [];
+    try {
+        lineArray = str.split(",");
+        two.makeLine(mapArray[lineArray[0]]._translation._x,mapArray[lineArray[0]]._translation._y,mapArray[lineArray[1]]._translation._x,mapArray[lineArray[1]]._translation._y);
+        two.update();
+        updateJSON(false,lineArray);
+    }
+    catch(err) {
+        console.log(err);
+        console.log("Incorrect Format");
+        console.log(str.split(","));
 
+    }
 }
 
 function getMousePos(canvas,evt) {
-    var rect = canvas.getBoundingClientRect();
+    let rect = canvas.getBoundingClientRect();
     return {
         x: evt.clientX - rect.left,
         y: evt.clientY - rect.top
@@ -30,9 +56,9 @@ function getMousePos(canvas,evt) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     
-    var elem = document.getElementById('drawing-tool');
+    let elem = document.getElementById('drawing-tool');
     two = new Two({ 
         type:Two.Types.canvas,
         width: 500,
@@ -41,10 +67,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     }).appendTo(elem)
     
-    var myCanvas = document.getElementsByTagName("canvas")[0]
-    var context = myCanvas.getContext('2d');
+    let myCanvas = document.getElementsByTagName("canvas")[0]
+    let context = myCanvas.getContext('2d');
 
-    myCanvas.addEventListener('mousemove', function(evt) {
+    myCanvas.addEventListener('mousemove', (evt) => {
         mousePos = getMousePos(myCanvas, evt);
     }, false);
 
@@ -53,42 +79,10 @@ document.addEventListener("DOMContentLoaded", function() {
         family: 'Lato'
     } 
 
-    myCanvas.addEventListener('click', function(evt) {
+    myCanvas.addEventListener('click', (evt) => {
         mousePos = getMousePos(myCanvas,evt);
         addNode(mousePos)
     },false);
-
-        /*  var rectA = two.makeRectangle(150, 100, 200, 100);
-    rectA.stroke = 'orange';
-    two.makeText('Rectangle', 150, 100, styles);
-
-    var rectB = two.makeRoundedRectangle(400, 100, 200, 100, 10);
-    rectB.stroke = 'blue';
-    rectB.linewidth = 5;
-    two.makeText('Rounded Rectangle', 400, 100, styles);
-
-    var rectC = two.makeRoundedRectangle(650, 100, 200, 100, 50);
-    rectC.stroke = 'green';
-    rectC.linewidth = 2;
-    two.makeText('Rounded Rectangle (II)', 650, 100, styles);
-
-    // var circA = two.makeCircle(150, 250, 75);
-    //circA.fill = 'yellow';
-    //circA.noStroke();
-    //two.makeText('Circle', 150, 250, styles);
-
-    var ellipseA = two.makeEllipse(400, 250, 100, 75);
-    ellipseA.fill = 'pink';
-    ellipseA.stroke = 'red';
-    ellipseA.linewidth = 4;
-    two.makeText('Ellipse', 400, 250, styles);
-
-    var ellipseB = two.makeEllipse(650, 300, 75, 100);
-    ellipseB.fill = 'white';
-    ellipseB.stroke = 'black';
-    ellipseB.linewidth = 20;
-    two.makeText('Ellipse (II)', 650, 300, styles);
-    two.update(); */
 });
 
 
