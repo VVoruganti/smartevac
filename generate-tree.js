@@ -47,15 +47,16 @@ var t = createTree(testMap);
 
 function updateDanger(dangerNodes, tree, map) {
     for (var i = 0; i < dangerNodes.length; i++) {
+        /*
         for (var node in tree) {
             if (node == dangerNodes[i]) {
                 tree[node]["danger"] = true;
             }
         }
+*/
         for (var node in map) {
             if (distance(map[node].x, map[dangerNodes[i]].x, map[node].y, map[dangerNodes[i]].y) < 60) {
                 tree[node]["danger"] = true;
-                console.log(tree[node]["danger"]);
             }
         }
     }
@@ -63,4 +64,4 @@ function updateDanger(dangerNodes, tree, map) {
     fs.writeFileSync('Tree.json', data);
     return tree;
 }
-updateDanger(['2'], t, testMap) //to be called with dangerous nodes array;
+console.log(updateDanger(['2'], t, testMap)) //to be called with dangerous nodes array;
