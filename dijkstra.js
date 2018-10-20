@@ -18,51 +18,27 @@ const testTree = { //some tree, sample here for test
         connections : { B:1, A:5 }
     }
 }
-/*
-function removeDanger(tree) {
-    var danger;
-    for (var node in tree) {
-        if (tree[node].danger) {
-            danger = {node : { connections:tree[node].connections } };
-            delete tree[node];
-        }
-    }
-    for (var node in tree) {
-        for (var d in danger) {
-            for (var c in danger[d]) {
-                if (String(danger[d][connections].c) == String(node)) {
-                    delete tree[node][connections][d];
-                }
-            }
-        }
-    }
-    return tree;
-}
-*/
-function findDanger(tree) {
+
+
+function findDanger(tree) { //returns an array of dangerous nodes
     var danger = [];
-    for (var node in tree) {
-        if (tree[node].danger) {
+    for (var node in tree) { //loops through all nodes in tree
+        if (tree[node].danger) { //pushes node to array if dangerous
             danger.push(String(node));
         }
     }
     return danger;
 }
-/*
 
-*/
-
-
-
-function dijkstra(startNode, tree) {
+function dijkstra(startNode, tree) { //runs dijkstra algorithm on safe nodes
     const danger = findDanger(tree);
     const route = new Graph();
 
     var endNode;
 
     for (var node in tree) {
-        if (!(node in danger)) {
-            for (var c in tree[node].connections) {
+        if (!(node in danger)) { //only considers safe nodes
+            for (var c in tree[node].connections) { //removes dangerous nodes from connections with other nodes
                 if (danger.includes(c)) {
                     delete tree[node].connections[c];
                 }
@@ -70,11 +46,11 @@ function dijkstra(startNode, tree) {
             if (tree[node].exit) {
                 endNode = String(node);
             }
-                route.addNode(String(node), tree[node].connections);
+                route.addNode(String(node), tree[node].connections); //add nodes to tree map
         }
 
     }
 
-    return route.path(startNode, endNode);
+    return route.path(startNode, endNode); //calculates shortest route between the nodes
 }
 console.log(dijkstra('A', testTree))
