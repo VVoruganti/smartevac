@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>dijkstra test</title>
+        <script src="dijkstra.js"></script>
+    </head>
+    <body>
+        <div id="intro-text" >
+            <h1>Map Generator Tool</h1>
+            <h2>Use the tool below to generate a map for your space</h2>
+        </div>
+        <div id="drawing">
+            <div id="drawing-tool"></div>
+            <form id="graph-export">
+                <input type="submit" id="submit"></input>
+            </form>
+        </div>
+    </body>
+</html>
