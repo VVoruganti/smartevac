@@ -1,7 +1,7 @@
 const Graph = require('node-dijkstra')
 const fs = require('fs');
 
-let raw = fs.readFileSync('Tree-testg.json');
+let raw = fs.readFileSync('Tree.json');
 let testTree2 = JSON.parse(raw);
 const testTree = { //some tree, sample here for test
     'A': {
@@ -20,6 +20,7 @@ const testTree = { //some tree, sample here for test
         connections : { B:1, A:5 }
     }
 }
+
 
 
 function findDanger(tree) { //returns an array of dangerous nodes
