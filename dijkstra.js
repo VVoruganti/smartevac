@@ -1,6 +1,8 @@
 const Graph = require('node-dijkstra')
+const fs = require('fs');
 
-
+let raw = fs.readFileSync('Tree-testg.json');
+let testTree2 = JSON.parse(raw);
 const testTree = { //some tree, sample here for test
     'A': {
         exit : false,
@@ -53,4 +55,4 @@ function dijkstra(startNode, tree) { //runs dijkstra algorithm on safe nodes
 
     return route.path(startNode, endNode); //calculates shortest route between the nodes
 }
-console.log(dijkstra('A', testTree))
+console.log(dijkstra('1', testTree2))
