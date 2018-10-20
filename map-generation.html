@@ -16,8 +16,8 @@
             <div id="drawing-tool"></div>
             <div id="generators"> 
                 <select id="node-type">
-                    <option value="exit">room</option>
-                    <option value="room">exit</option>
+                    <option value="room">room</option>
+                    <option value="exit">exit</option>
                 </select>
                 <form>
                     <input type="text" id="line-input"></input>
@@ -25,7 +25,7 @@
                 </form>
             </div>
             <form id="graph-export">
-                <input type="submit" id="submit"></input>
+                <input type="button" value="Export JSON" onclick="exportJSON()" id="submit"></input>
             </form>
         </div>
     </body>

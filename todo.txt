@@ -30,7 +30,8 @@ Below is a list of all of the different aspects of the application
 - Admin system that allows administrators to lock out certain individuals to
   the service.  
  
-
+- Security auditing service that an organization can use to determine if there
+  is any possiblity of having no safe routes out of the school. 
 
 Bare essentials for the hackathon
 
