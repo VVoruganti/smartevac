@@ -1,20 +1,46 @@
 /*The purpose of this javascript file is to create an environment that administrators can use to generate a map for their specific building */
+
 let mousePos;
 let two;
 let styles;
 let counter = 0;
 let mapArray = [] 
-let JSONObject = [];
+const JSONObject = [];
+
+
+const json = {
+    getJSONObject: () => {
+        return JSONObject
+    },
+    warning: (warning) => {
+        console.log('Warning: ' +warning);
+    },
+    error: (err) => {
+        console.log('Error: ' + error);
+    }
+}
+
+
+    /*function getJSONObject() {
+    return JSONObject;
+}
+
+module.exports = {
+    getJSONObject:getJSONObject
+ 
+}*/
 
 function updateJSON(...args) {
     if(args[0] == true) {
         let node = args[1];
         let xval = args[2];
         let yval = args[3];
+        let exitStatus = args[4];
         JSONObject[node] = {
             x:xval,
             y:yval,
-            connections:[]
+            connections:[],
+            exit:exitStatus
         }
     }
     else if(args[0] == false) {
@@ -23,11 +49,27 @@ function updateJSON(...args) {
     }
 }
 
+function exportJSON() {
+    alert(JSON.stringify(JSONObject));
+}
+
 function addNode(mouse) {
-    mapArray.push(two.makeCircle(mouse.x,mouse.y,10));
-    two.makeText(String(counter),mouse.x,mouse.y,styles);
-    two.update();
-    updateJSON(true,counter,mouse.x,mouse.y);
+    exitStatus = false;
+    if(document.getElementById("node-type").value == "exit") {
+        exitStatus = true;
+        var circ = two.makeCircle(mouse.x,mouse.y,10);
+        circ.stroke = 'green';
+        circ.fill = 'green';
+        two.makeText(String(counter),mouse.x,mouse.y,styles);
+        two.update();
+        mapArray.push(circ);
+    }
+    else {
+        mapArray.push(two.makeCircle(mouse.x,mouse.y,10));
+        two.makeText(String(counter),mouse.x,mouse.y,styles);
+        two.update();
+    }
+    updateJSON(true,counter,mouse.x,mouse.y,exitStatus);
     counter++;
 }
 
@@ -55,35 +97,40 @@ function getMousePos(canvas,evt) {
     };
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    
-    let elem = document.getElementById('drawing-tool');
-    two = new Two({ 
-        type:Two.Types.canvas,
-        width: 500,
-        height: 480
+//try {
+//  if (document != undefined ){
+     document.addEventListener("DOMContentLoaded", () => {
         
-    
-    }).appendTo(elem)
-    
-    let myCanvas = document.getElementsByTagName("canvas")[0]
-    let context = myCanvas.getContext('2d');
+        let elem = document.getElementById('drawing-tool');
+        two = new Two({ 
+            type:Two.Types.canvas,
+            width: 500,
+            height: 480
+            
+        
+        }).appendTo(elem)
+        
+        let myCanvas = document.getElementsByTagName("canvas")[0]
+        let context = myCanvas.getContext('2d');
 
-    myCanvas.addEventListener('mousemove', (evt) => {
-        mousePos = getMousePos(myCanvas, evt);
-    }, false);
+        myCanvas.addEventListener('mousemove', (evt) => {
+            mousePos = getMousePos(myCanvas, evt);
+        }, false);
 
-    styles = {
-        size: 9,
-        family: 'Lato'
-    } 
+        styles = {
+            size: 9,
+            family: 'Lato'
+        } 
 
-    myCanvas.addEventListener('click', (evt) => {
-        mousePos = getMousePos(myCanvas,evt);
-        addNode(mousePos)
-    },false);
-});
-
+        myCanvas.addEventListener('click', (evt) => {
+            mousePos = getMousePos(myCanvas,evt);
+            addNode(mousePos)
+        },false);
+     }); 
+//  }
+    //}
+//catch(err) {
+//  console.log(err);
+//}
 
 
