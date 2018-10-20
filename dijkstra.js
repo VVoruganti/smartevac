@@ -5,29 +5,34 @@ const testTree = { //some tree, sample here for test
     'A': {
         exit : false,
         danger : false,
-        connections : {B : 1}
+        connections : { C:1 }
     },
     'B': {
         exit : true,
         danger : false,
-        connections : {A : 1}
+        connections : { C:3 }
+    },
+    'C': {
+        exit : false,
+        danger : false,
+        connections : { B:3, A:1 }
     }
 }
-function dijkstra(startNode, testTree) {
+
+
+function dijkstra(startNode, tree) {
     const route = new Graph();
 
     var endNode;
-    var i = 0;
-    var nodeNames = Object.keys(testTree);
-    for (var node in testTree) {
-        if (testTree.node.exit)
-            endNode = testTree.node;
+
+    for (var node in tree) {
+        if (tree[node].exit) {
+            endNode = String(node);
         }
-        route.addNode(testTree.node, testTree.node.connections);
-        i++;
+        route.addNode(String(node), tree[node].connections);
     }
 
     return route.path(startNode, endNode);
 }
 
-dijkstra('A', testTree)
+console.log(dijkstra('A', testTree))
