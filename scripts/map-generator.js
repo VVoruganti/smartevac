@@ -1,21 +1,31 @@
 /*The purpose of this javascript file is to create an environment that administrators can use to generate a map for their specific building */
 var mousePos;
 var two;
+var styles;
+var counter = 0;
+var mapArray = [] 
+
 
 function updateJSON() {
 
 }
 
 function addNode(mouse) {
-    two.makeCircle(mouse.x,mouse.y,10);
+    mapArray.push(two.makeCircle(mouse.x,mouse.y,10));
+    two.makeText(String(counter),mouse.x,mouse.y,styles);
     two.update();
+    counter++;
+}
+
+function addLine() {
+
 }
 
 function getMousePos(canvas,evt) {
     var rect = canvas.getBoundingClientRect();
     return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
     };
 }
 
@@ -35,12 +45,12 @@ document.addEventListener("DOMContentLoaded", function() {
     var context = myCanvas.getContext('2d');
 
     myCanvas.addEventListener('mousemove', function(evt) {
-     mousePos = getMousePos(myCanvas, evt);
+        mousePos = getMousePos(myCanvas, evt);
     }, false);
 
-    var styles = {
-          size: 18,
-          family: 'Lato'
+    styles = {
+        size: 9,
+        family: 'Lato'
     } 
 
     myCanvas.addEventListener('click', function(evt) {
