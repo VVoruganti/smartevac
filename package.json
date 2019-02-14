@@ -1,8 +1,8 @@
 {
   "name": "smartevac",
   "version": "1.0.0",
-  "description": "Smart Evacuation Tool",
-  "main": "script.js",
+  "description": "Smart evacuation tool",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,13 +15,5 @@
   "bugs": {
     "url": "https://github.com/VVoruganti/smartevac/issues"
   },
-  "homepage": "https://github.com/VVoruganti/smartevac#readme",
-  "dependencies": {
-    "two.js": "^0.7.0-alpha.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "babelify": "^10.0.0",
-    "node-dijkstra": "^2.5.0"
-  }
+  "homepage": "https://github.com/VVoruganti/smartevac#readme"
 }
